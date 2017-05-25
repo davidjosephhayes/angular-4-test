@@ -1,3 +1,10 @@
-<h1>
-  {{title}}
-</h1>
+<h1>{{title}}</h1>
+<h2>Photos</h2>
+<ul id="pick-a-photo">
+  <li *ngFor="let photo of photos" (click)="onSelect(photo)">
+    <img src="{{photo.src}}">
+    <br>
+    {{photo.name}}
+  </li>
+</ul>
+<app-photo-info [photo]="selectedPhoto"></app-photo-info>
