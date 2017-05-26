@@ -39,6 +39,7 @@ export class PhotoInfoComponent implements OnInit, OnChanges, DoCheck {
       // this.setCurrentStyles()
   }
 
+  // observer the changes to photo object and recaculate styles as necessary
   ngDoCheck() {
     var changes = this.differ.diff(this.photo);
     if(changes) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import { /* Router, */ ActivatedRoute, Params } from '@angular/router';
 
 import { Photo } from '../photo';
@@ -14,6 +14,7 @@ export class PhotosComponent implements OnInit {
   photos: Photo[]; // a list of photos for the thumb nails
   selectedPhoto: Photo; // the currently selected photo
   photoIdParam: boolean = false; // was an id passed from the route, if this is true and photo is empty, we have an issue
+  newPhoto: Photo;
   title: string = 'Photo Gallery';
 
   constructor (
@@ -23,11 +24,11 @@ export class PhotosComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
+    // this.newPhoto = new Photo();
     this.photoService.getPhotos().then(photos => {
       this.photos = photos;
       this.setThumnailStateStyles();
     });
-
     /*
     The reason that the params property on ActivatedRoute is an Observable 
     is that the router may not recreate the component when navigating to 
@@ -45,6 +46,35 @@ export class PhotosComponent implements OnInit {
       });
       
   }
+
+  /*
+  ngAfterViewChecked() {
+    this.photoService.getPhotos().then(photos => {
+      this.photos = photos;
+      // console.log(photos);
+      this.setThumnailStateStyles();
+    });
+  }
+
+  createPhoto(photo: Photo): void {
+
+    this.photoService.createPhoto(photo)
+      .then(photo => {
+        this.photos.push(photo);
+        this.selectedPhoto = photo;
+        this.photoIdParam = false;
+      });
+  }
+
+  deletePhoto(photo: Photo): void {
+    this.photoService
+      .deletePhoto(photo)
+      .then(() => {
+        this.photos = this.photos.filter(b => b !== photo);
+        if (this.selectedPhoto === photo) { this.selectedPhoto = null; }
+      });
+  }
+  */
  
   onSelect(photo: Photo): void {
     this.photoIdParam = false;

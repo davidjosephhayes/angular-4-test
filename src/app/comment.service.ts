@@ -15,7 +15,6 @@ export class CommentService {
   }
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  
   private commentsUrl = 'api/comments'; // url to get comments for a comment
 
   getPhotoComments(commentID: number): Promise<Comment[]> {
