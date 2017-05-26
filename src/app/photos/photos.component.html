@@ -1,0 +1,12 @@
+<h2>{{title}}</h2>
+<div id="pick-a-photo-container">
+  <ul id="pick-a-photo" [ngStyle]="thumnailStateStyles">
+    <li *ngFor="let photo of photos" (click)="onSelect(photo)">
+      <div class="imgbox"><img src="{{photo.src}}" [ngStyle]="getThumnailStyles(photo)"></div>
+      <br>
+      {{photo.name}}
+    </li>
+  </ul>
+</div>
+<app-photo-info id="photo-info" [photo]="selectedPhoto" [photoIdParam]="photoIdParam"></app-photo-info>
+<app-photo-comments id="photo-comments" [photo]="selectedPhoto"></app-photo-comments>

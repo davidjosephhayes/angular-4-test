@@ -1,5 +1,15 @@
 <div *ngIf="photo">
-  <img src="{{photo.src}}">
+  <h2>{{title}}</h2>
+  <div id="work-space">
+    <img src="{{photo.src}}" [ngStyle]="currentStyles">
+  </div>
   <br>
-  <h3>{{photo.name}}</h3>
+  <label>Name:</label> <input [(ngModel)]="photo.name" name="name"> <br>
+  <label>Deg Rotation:</label> <input type="number" [(ngModel)]="photo.rotation" name="rotation"> <br>
+  <label>Source:</label> <input [(ngModel)]="photo.src" name="src">
+  <button (click)="rotate(-90)">Rotate Left</button>
+  <button (click)="rotate(90)">Rotate Right</button>
+</div>
+<div *ngIf="!photo && !photoIdParam">
+  <h3 class="red">Not foud</h3>
 </div>

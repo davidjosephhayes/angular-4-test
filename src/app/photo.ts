@@ -1,6 +1,6 @@
 export class Photo {
 	id: number;
 	name: String;
-	orientation: String;
+	rotation: number; // degrees rotated
 	src: String;
 }

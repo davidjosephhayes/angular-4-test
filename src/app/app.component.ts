@@ -1,37 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Photo } from './photo';
-import { PhotoService } from './photo.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   // providers : [PhotoService],
-  providers: [],
+   providers: [],
 })
 export class AppComponent implements OnInit {
 
-  photo: Photo;
-  photos: Photo[];
-  selectedPhoto: Photo;
-
-  constructor (private router: Router, private photoService: PhotoService) {
-  }
+  title: String = 'Angular 4 Test';
 
   ngOnInit() {
-  //   this.photoService.getPhotos();
+
   }
 
-  title = 'Photo Gallery';
-  
-  onSelect(photo: Photo): void {   
-    this.selectedPhoto = photo;
+  keyBuffer: number[] = [];
+  sequence: number[] = [38,38,40,40,37,39,37,39,66,65];
+  capture (e: KeyboardEvent): void {
+    this.keyBuffer.push(e.keyCode);
+    // console.log(this.keyBuffer, this.konami)
+    while (this.keyBuffer.length>this.sequence.length) this.keyBuffer.shift();
+    // console.log(this.keyBuffer.length,this.konami.length);
+    if (this.keyBuffer.length!=this.sequence.length) return;
+    let success = true;
+    for (var i=0; i<this.keyBuffer.length; i++) {
+      // console.log(this.keyBuffer[i],this.konami[i]);
+      if (this.keyBuffer[i] != this.sequence[i]) {
+        success = false;
+        break;
+      }
+    }
+    if (!success) return;
+    alert('lame...  i played street fighter ii');
   }
-
-  // showInfo(photo: Photo): void {
-  //   this.selectedPhoto = photo;
-  //   this.router.navigate(['/photo', this.selectedPhoto.id]);
-  // }
 
 }

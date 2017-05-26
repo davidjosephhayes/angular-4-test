@@ -1,0 +1,18 @@
+<div *ngIf="photo">
+  <h2>{{title}}</h2>
+  <ul id="comments-list">
+    <li *ngFor="let comment of comments" >
+      <strong>{{comment.username}}</strong> on {{comment.datetime}} 
+      <br>
+      <blockquote>{{comment.content}}</blockquote>
+    </li>
+  </ul>
+  <h3>New Comment</h3>
+  <div>
+    <form>
+      <label>Name:</label> <input [(ngModel)]="newComment.username" name="username"> <br>
+      <label>Comment:</label> <textarea [(ngModel)]="newComment.content" name="content"></textarea> <br>
+      <button (click)="createComment(newComment)">Submit</button>
+    </form>
+  </div>
+</div>
